@@ -13,6 +13,4 @@ function foo() {
     return text(mood())
 }
 
-
 foo()
-
