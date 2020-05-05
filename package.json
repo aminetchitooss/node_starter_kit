@@ -1,0 +1,16 @@
+{
+  "name": "node_starter_kit",
+  "version": "1.0.0",
+  "description": "this is a simple repo",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "dev": "nodemon index"
+  },
+  "author": "tchitooss",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  }
+}
