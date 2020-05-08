@@ -1,2 +1,2 @@
 console.log('hello world')
-cons z=2
+const z=2
