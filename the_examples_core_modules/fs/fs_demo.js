@@ -1,0 +1,129 @@
+const fs = require('fs');
+const path = require('path');
+// const folderPath = path.join(__dirname, 'test')
+// const filePath = path.join(folderPath, 'hello.txt')
+
+// fs.mkdir(folderPath, callback_creating_folder)
+
+// function callback_creating_folder(pErr) {
+//     if (pErr) {
+//         if (pErr.code === "EEXIST") {
+//             console.log('file already exists')
+//         } else {
+//             throw pErr
+//         }
+//     } else {
+//         console.log('folder created')
+//     }
+// }
+
+// // // Create and write to file
+// fs.writeFile(filePath,
+//     'Hello World!',
+//     err => {
+//         if (err) throw err;
+//         console.log('File written to...');
+//     }
+// );
+
+// // // File append
+// fs.appendFile(filePath,
+//     ' I love Node.js',
+//     err => {
+//         if (err) throw err;
+//         console.log('File written to...');
+//     }
+// );
+
+// // // Read file
+// fs.readFile(filePath, 'utf8', (err, data) => {
+//     if (err) throw err;
+//     console.log(data);
+// });
+
+// // Rename file
+// fs.rename(
+//     path.join(__dirname, '/test', 'hello.txt'),
+//     path.join(__dirname, '/test', 'helloworld.txt'),
+//     err => {
+//         if (err) throw err;
+//         console.log('File renamed...');
+//     }
+// );
+
+
+
+// // WRITE THE FOLLOWING USERS NAME IN  A FILE  AND THEN DISPLAY THEM
+const users = [
+    { name: "Kaddy" },
+    { name: "Marc" },
+    { name: "Prince" },
+    { name: "Kally" }
+]
+const dataFolderPath = path.join(__dirname, 'data')
+const dataFilePath = path.join(dataFolderPath, 'name.json')
+
+// create folder
+fs.mkdir(dataFolderPath, {}, err => {
+    if (!err) {
+        console.log("Folder created ...");
+
+        // create file and write json data
+        fs.writeFile(dataFilePath, JSON.stringify(users), err => {
+            if (err) throw err;
+
+            console.log("File created and data written ...")
+
+            //read file
+            fs.readFile(dataFilePath, "utf8", (err, users) => {
+                if (err) throw err;
+
+                // display user name
+                JSON.parse(users).forEach(user => {
+                    console.log(user.name);
+                });
+
+                // display successful message
+                console.log("Users name displayed ...")
+
+
+                const newFilePath = path.join(dataFolderPath, "users.json")
+                // rename the file
+                fs.rename(dataFilePath, newFilePath, err => {
+                    if (err) throw err;
+
+                    // display successful message
+                    console.log("File rename completed ...");
+                });
+
+            });
+        });
+
+    }
+})
+
+
+
+
+// // delete a folder
+// // NOTE : you must create a folder named "myFolderToDelete".
+// // NOTE : myFolderToDelete must be an empty folder.
+// fs.rmdir(path.join(__dirname, "/myFolderToDelete"), (err) => {
+//     if (err) throw err;
+
+//     console.log("Folder deleted ...");
+// });
+
+
+// // Read the contents of a folder
+// // NOTE: the first argument can be whatever route you want, it doesn't have to be the actual dirname.
+// fs.readdir(__dirname, (err, files) => {
+//     if (err) throw err
+//     console.log(files)
+// })
+
+// // Copy a file 
+// fs.copyFile('source.txt', 'destination.txt', err => {
+//     if (err) throw err;
+//     console.log('File copied...')
+// })
